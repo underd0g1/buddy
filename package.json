@@ -1,0 +1,21 @@
+{
+  "name": "buddy",
+  "version": "1.0.0",
+  "description": "node.js discord bot ",
+  "main": "buddy1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "bot",
+    "discord",
+    "api"
+  ],
+  "author": "underd0g",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "node-fetch": "^2.6.0"
+  }
+}
