@@ -1,6 +1,6 @@
 // test bot
 //todo: git init here
-//store api keys and login vars in .env vars
+
 //add new youtube api feature
 
 const discord = require('discord.js');
