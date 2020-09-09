@@ -1,0 +1,11 @@
+//fill in these variables and then copy or rename it to config.js
+
+var vars ={
+
+login: 'enter_discord_key_here',
+beerkey: 'enter_beer_key_here',
+genchan:'enter_channel_key_here'
+
+}
+
+module.exports = vars;
