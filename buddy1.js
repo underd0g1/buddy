@@ -2,11 +2,17 @@
 //todo: git init here
 
 //add new youtube api feature
+// add the internal.js
+// button up 3party.js
+//add git stats to code function
+// create an object of words for built in foas.
 
 const discord = require('discord.js');
 const client = new discord.Client();
 const fetch = require('node-fetch');
-var config = require('./config.js');
+var config = require('./config/config.js');
+var apiroute = require('./lib/3party.js')
+
 
 client.on('ready', () => {
   console.log('connected as ' + client.user.tag)
@@ -19,7 +25,7 @@ client.on('ready', () => {
       console.log(` ~ ${channel.name} ${channel.type} ${channel.id}`)
     })
   })
-    let genchannel = client.channels.cache.get(config.genchan)
+    let genchannel = client.channels.cache.get(config.discordkey.genchan)
 
 
     //const attachment = new discord.Attachment("")
@@ -61,7 +67,11 @@ client.on('guildMemberAdd', member => {
   channel.send(`Welcome to the server, ${member}`);
 });
 
-function processCommand(receivedMessage){
+
+
+// add to handlers folder (events.js)
+async function processCommand(receivedMessage){
+
    let fullCommand = receivedMessage.content.substr(1)
    let splitCommand = fullCommand.split(" ")
    let primaryCommand = splitCommand[0]
@@ -72,15 +82,15 @@ function processCommand(receivedMessage){
    }else if (primaryCommand == "multiply"){
      multiplyCommand(arguements, receivedMessage)
    }else if(primaryCommand == "iss"){
-    iss(arguements, receivedMessage)
+      receivedMessage.channel.send(await apiroute.iss());
   }else if(primaryCommand == "joke"){
-    joke(arguements, receivedMessage)
+      receivedMessage.channel.send(await apiroute.joke());
   }else if(primaryCommand == "code"){
-     code(arguements, receivedMessage)
+     receivedMessage.channel.send(await apiroute.code());
  }else if(primaryCommand == "beer"){
-    beer(arguements, receivedMessage)
+    receivedMessage.channel.send(await apiroute.beer());
   }else if(primaryCommand == "foas"){
-    foas1(arguements, receivedMessage)
+    receivedMessage.channel.send(await apiroute.foas1());
   }else{
      helpCommand(arguements,receivedMessage)
    }
@@ -116,27 +126,7 @@ function helpCommand(arguements, receivedMessage){
   }
 }
 
-const url = 'https://api.wheretheiss.at/v1/satellites/25544'
 
-
-async function iss(arguements, receivedMessage){
-  const response = await fetch(url)
-  const data = await response.json()
-  console.log(data)
-  const {latitude, longitude} = data
-  receivedMessage.channel.send('The current lat is: ' + latitude + ' and the current long is: ' + longitude)
-
-}
-const api = 'http://api.icndb.com/jokes/random'
-async function joke(arguements, receivedMessage){
-  const response = await fetch(api)
-  const data = await response.json()
-  console.log(data)
-  var joke = data.value.joke
-  console.log(joke)
-  receivedMessage.channel.send(joke)
-
-}
 function time(arguements, receivedMessage){
   var date = new date()
   var hours = date.getHours()
@@ -149,100 +139,4 @@ function time(arguements, receivedMessage){
   }
 }
 
-function code(arguements, receivedMessage){
-  const repo = 'https://github.com/underd0g1/buddy'
-  const lang = 'node.js'
-  receivedMessage.channel.send(`▒█▀▀█ █░░█ █▀▀▄
-▒█▀▀▄ █░░█ █░░█
-▒█▄▄█ ░▀▀▀ ▀▀▀░ v1.0
-
-`)
-    receivedMessage.channel.send('Repo: ' + repo)
-    receivedMessage.channel.send('lang: ' + lang)
-    receivedMessage.channel.send('author: ' + 'underd0g')
-
-}
-//add beer to the received receivedMessage
-async function beer(arguements, receivedMessage){
-  const url = 'https://sandbox-api.brewerydb.com/v2/beer/random/?'
-  const key = 'key=' +config.beerkey;
-  var api = url + key
-  const response = await fetch(api)
-  const info = await response.json()
-  console.log(info)
-  var brand = info.data.name
-  var name = info.data.style.category.name
-  var abv = info.data.abv
-  var desc = info.data.style.description
-  receivedMessage.channel.send('Here is a beer that I found:')
-  receivedMessage.channel.send(brand)
-  receivedMessage.channel.send(name)
-  receivedMessage.channel.send(abv)
-  receivedMessage.channel.send(desc)
-}
-
-// //add the foas api
-// https://www.foaas.com/operations
-// async function foas(arguements, receivedMessage){
-//   const response = await fetch(url)
-//   const info = await response.json()
-//
-// }
-//console.log('hello console!');
-      const url1 = 'https://www.foaas.com/operations'
-      const search = 'https://www.foaas.com'
-      var name = 'buddy';
-      var arr = [];
-      async function foas(arguements,receivedMessage){
-        const responce = await fetch(url1);
-        const data = await responce.json();
-        //console.log(data[0].fields.length);
-        var arr = [];
-        for (i=0; i < data.length; i++){
-          if (data[i].fields.length == 1){
-            arr.push(data[i].url);
-
-            //console.log(data[i].fields.length, data[i].url);
-          }
-        }
-        //console.log(arr.length);
-        var rand = Math.floor(Math.random()*46);
-        //console.log(rand);
-        //console.log(arr[rand]);
-        var link = arr[rand];
-        var glink = link.lastIndexOf('/');
-        flink = link.slice(0,glink);
-        //console.log(flink);
-
-        var link2 = search + flink +"/"+ name;
-        console.log(link2.toString());
-        return link2.toString();
-
-      }
-
-
-
-
-  //    console.log('right before the foas1 function');
-
-
-      async function foas1(arguements, receivedMessage){
-        var searchurl = await foas();
-        const response = await fetch(searchurl , {
-          method: 'GET',
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-        });
-        const data1 = await response.json();
-
-        //console.log(data[0].fields.length);
-        //console.log(data1.message.toString());
-        // console.log(data1.subtitle.toString());
-        //return(data1.message.toString() + ' ' + data1.subtitle.toString());
-        receivedMessage.channel.send(data1.message  + " " +  data1.subtitle);
-        //document.write(data1.message + data1.subtitle);
-      }
-
-client.login(config.login)
+client.login(config.discordkey.login)
