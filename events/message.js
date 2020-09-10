@@ -7,30 +7,31 @@ var apiroute = require('../lib/3party.js')
 
 
 const internalResponse = async(client) => {
-await client.on('message', (receivedMessage) => {
-  const process = require("../lib/processing.js");
-  console.log("received message was : " + receivedMessage.content)
-if (receivedMessage.author == client.user){
-  return
-}
-//receivedMessage.channel.send("message received, " + receivedMessage.author.toString() + ": " + receivedMessage.content)
-if (receivedMessage.content == 'hi buddy'){
-  receivedMessage.react("🤚")
-  receivedMessage.channel.send('whats good ' + receivedMessage.author)
-}else if(receivedMessage.content.includes('buddy')){
-  receivedMessage.channel.send('hi');
-}else if(receivedMessage.content.includes('buddy' && 'fuck')){
-  receivedMessage.channel.send('aahhhh my virgin ears!')
-}else if (receivedMessage.content.includes('hi')){
-  receivedMessage.channel.send('hi' + " " + receivedMessage.author)
-}
 
-if(receivedMessage.content.startsWith("!")){
-  console.log('hit the starts with ! if statement');
-  process.processingCommand(receivedMessage);
-}
+      await client.on('message', (message) => {
+            const process = require("../lib/processing.js");
+            console.log("received message was : " + message.content)
+            if (message.author == client.user){
+              return
+            }
+            //message.channel.send("message received, " + message.author.toString() + ": " + message.content)
+            if (message.content == 'hi buddy'){
+                message.react("🤚")
+                message.channel.send('whats good ' + message.author)
+            }else if(message.content.includes('buddy')){
+                channel.send('hi');
+            }else if(message.content.includes('buddy' && 'fuck')){
+                channel.send('aahhhh my virgin ears!')
+            }else if (message.content.includes('hi')){
+                channel.send('hi' + " " + message.author)
+            }
 
-})
+            if(message.content.startsWith("!")){
+                console.log('hit the starts with ! if statement');
+                process.processingCommand(message);
+              }
+
+            })
 
 }
 

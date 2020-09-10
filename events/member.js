@@ -8,6 +8,6 @@ const newmember = async(client)=>{
           // Send the message, mentioning the member
           channel.send(`Welcome to the server, ${member}`);
           });
-      })
+      }
 
   module.exports={newmember}
