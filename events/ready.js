@@ -17,9 +17,7 @@ const startup = (client) => {
               //const attachment = new discord.Attachment("")
               genchannel.send(`  ▒█▀▀█ █░░█ █▀▀▄
                                 ▒█▀▀▄ █░░█  █░░█
-                                ▒█▄▄█ ░▀▀▀ ▀▀▀░ v1.0
-
-                              `)
+                                ▒█▄▄█ ░▀▀▀ ▀▀▀░ v1.0`)
 
                     })
 

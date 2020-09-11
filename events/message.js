@@ -10,7 +10,7 @@ const internalResponse = async(client) => {
 
       await client.on('message', (message) => {
             const process = require("../lib/processing.js");
-            console.log("received message was : " + message.content)
+
             if (message.author == client.user){
               return
             }
@@ -19,11 +19,11 @@ const internalResponse = async(client) => {
                 message.react("🤚")
                 message.channel.send('whats good ' + message.author)
             }else if(message.content.includes('buddy')){
-                channel.send('hi');
+                message.channel.send('hi');
             }else if(message.content.includes('buddy' && 'fuck')){
-                channel.send('aahhhh my virgin ears!')
+                message.channel.send('aahhhh my virgin ears!')
             }else if (message.content.includes('hi')){
-                channel.send('hi' + " " + message.author)
+                message.channel.send('hi' + " " + message.author)
             }
 
             if(message.content.startsWith("!")){
