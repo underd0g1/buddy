@@ -15,9 +15,7 @@ const startup = (client) => {
                     })
               let genchannel = client.channels.cache.get(config.discordkey.genchan)
               //const attachment = new discord.Attachment("")
-              genchannel.send(`  ▒█▀▀█ █░░█ █▀▀▄
-                                ▒█▀▀▄ █░░█  █░░█
-                                ▒█▄▄█ ░▀▀▀ ▀▀▀░ v1.0`)
+              genchannel.send( 'back online!')
 
                     })
 
