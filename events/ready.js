@@ -4,7 +4,7 @@ const config = require("../config/config.js");
 const startup = (client) => {
 
       client.on('ready', ()=>{
-            console.log(client.user)
+
             console.log('connected as ' + client.user.tag)
             client.user.setActivity('Node.js vids', { type: 'Watching' });
             client.guilds.cache.forEach((guild)=>{
