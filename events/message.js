@@ -22,8 +22,6 @@ const internalResponse = async(client) => {
                 message.channel.send('hi');
             }else if(message.content.includes('buddy' && 'fuck')){
                 message.channel.send('aahhhh my virgin ears!')
-            }else if (message.content.includes('hi')){
-                message.channel.send('hi' + " " + message.author)
             }
 
             if(message.content.startsWith("!")){
