@@ -34,7 +34,8 @@ Here are a list of commands that buddy will respond to:
  - beer
  - multiply x y
  - help
- 
+ - stocks [symbol]
+ - foas 
  (You may also invoke the help command in the server to get a list of commands)
 
 ## Notes
