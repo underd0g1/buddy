@@ -22,10 +22,13 @@
 - navigate to directory
 - edit the .js file and insert your ID numbers into the corresponding places
 
-` $ node buddy1.js `
+$ node buddy1.js
+
 ## Usage
 After Adding buddy to the server, you may insteract with him in a number of ways. 
-His command syntax is ' $ ![command] '
+His command syntax is:
+
+$ ![command] 
 
 Here are a list of commands that buddy will respond to:
 
@@ -35,7 +38,9 @@ Here are a list of commands that buddy will respond to:
  - multiply x y
  - help
  - stocks [symbol]
- - foas 
+ - foas
+ - yt [search_term]
+
  (You may also invoke the help command in the server to get a list of commands)
 
 ## Notes
